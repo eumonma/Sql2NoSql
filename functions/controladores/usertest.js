@@ -20,6 +20,7 @@ const userApp = express();
 
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
+const { ExportBundleInfo } = require('firebase-functions/lib/providers/analytics');
 admin.initializeApp();
 
 const db = admin.firestore();
@@ -74,6 +75,25 @@ userApp.delete("/:id", async (req, res) => {
 
 exports.userTest = functions.https.onRequest(userApp);
 
+///////////////////////////////////////////////////////////
+//
+// Triggers para el Authentication Firebase.
+//
+// Insertatmos y borramos en Firestore.
+//
+///////////////////////////////////////////////////////////
+
+exports.newUserSingup = functions.auth.user().onCreate(user => {
+    return db.collection("users").doc(user.uid).set({
+        email: user.email,
+        nombre: ""
+    });
+});
+
+exports.userDeleted = functions.auth.user().onDelete(user => {
+    const doc = db.collection("users").doc(user.uid);
+    return doc.delete();
+});
 
 
 // Take the text parameter passed to this HTTP endpoint and insert it into
@@ -85,7 +105,7 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
     const writeResult = await admin.firestore().collection('messages').add({original: original});
     // Send back a message that we've successfully written the message
     res.json({result: `Message with ID: ${writeResult.id} added.`});
-  });
+});
 
 
 // Listens for new messages added to /messages/:documentId/original and creates an
