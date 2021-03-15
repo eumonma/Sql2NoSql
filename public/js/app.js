@@ -1,3 +1,4 @@
+/* Comentario */
 const requestModal = document.querySelector('.new-request'); // Hace referencia al documento modal a abrir
 const requestLink = document.querySelector('.add-request'); // HAce referencia al elemento sobre el que se hace Click para abrir la Modal
 
