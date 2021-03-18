@@ -1,3 +1,5 @@
+//const { console } = require("console");
+
 /* Comentario */
 const requestModal = document.querySelector('.new-request'); // Hace referencia al documento modal a abrir
 const requestLink = document.querySelector('.add-request'); // HAce referencia al elemento sobre el que se hace Click para abrir la Modal
@@ -13,3 +15,16 @@ requestModal.addEventListener('click', (e) => {
         requestModal.classList.remove('open');
     }
 })
+
+
+// say hello function call
+const button = document.querySelector('.call');
+button.addEventListener('click', () => {
+  // get function reference
+  const sayHelloFunc = firebase.functions().httpsCallable('sayHello');
+
+  // call the function and pass data
+  sayHelloFunc({ name: 'Eugenio' }).then(result => {
+    console.log(result.data);
+  });
+});

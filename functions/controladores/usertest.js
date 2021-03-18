@@ -9,6 +9,11 @@
 // });
 
 
+
+// ------------------------------------------
+// Son APIs para un request, de un tutorial de Youtube
+// ------------------------------------------
+
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
 
@@ -75,6 +80,10 @@ userApp.delete("/:id", async (req, res) => {
 
 exports.userTest = functions.https.onRequest(userApp);
 
+
+//
+// Del tutorial de Firebase
+//
 ///////////////////////////////////////////////////////////
 //
 // Triggers para el Authentication Firebase.

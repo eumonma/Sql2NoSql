@@ -105,3 +105,26 @@ header a:hover{
      font-family: inherit;
      cursor: pointer;
  }
+
+ /* Estilos de los modales de autenticación */
+ .auth{
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     background: #fafafa;
+     display: none;
+     z-index: 1;
+ }
+ .auth.open{
+     display: block;
+ }
+ .auth a{
+    text-decoration: underline;
+    cursor: pointer;
+ }
+ .auth .modal{
+     display: none;
+ }
+ .auth .modal.active{
+     display: block;
+ }
