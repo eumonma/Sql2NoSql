@@ -41,23 +41,27 @@ loginForm.addEventListener('submit', (e) => {
     const password = loginForm.password.value;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((user) => {
-            console.log('Logged in', user);
-            loginForm.reset(); // Limpia los datos
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+    .then((user) => {
+        console.log('Logged in', user);
+        loginForm.reset(); // Limpia los datos
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
             
-            loginForm.querySelector('.error').textContent = errorMessage;
-          });
+        loginForm.querySelector('.error').textContent = errorMessage;
+    });
+});
+
+// Log Out
+signOut.addEventListener('click', () => {
+    firebase.auth().signOut()
+    .then(() => console.log('Signed Out'));
 })
+
 
 // Auth Listener
 firebase.auth().onAuthStateChanged((user) => {
-
-    console.log('Entro');
-
     if (user) { // Si hay usuario es que está logado
         authWrapper.classList.remove('open');
         authModals.forEach(modal => modal.classList.remove('active'));
@@ -66,3 +70,15 @@ firebase.auth().onAuthStateChanged((user) => {
         authModals[0].classList.add('active'); // es la primera modal, que es el Login
     }
 });
+
+/*
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      console.log('Logado');
+    } else {
+      // No user is signed in.
+      console.log('NO Logado');
+    }
+});
+*/
