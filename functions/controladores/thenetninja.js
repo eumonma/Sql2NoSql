@@ -1,5 +1,19 @@
 const functions = require('firebase-functions');
 
+// auth trigger (Usuario creado)
+exports.newUserSignUp = functions.auth.user().onCreate(user => {
+    console.log('User Created', user.email, user.uid);
+});
+
+// auth trigger (Usuario borrado)
+exports.userDeleted = functions.auth.user().onDelete(user => {
+    console.log('User Deleted', user.email, user.uid);
+});
+
+
+/*
+
+NO hace falta para la aplicación final
 
 // Ejemplo 1. http request
 // Con una respuesta
@@ -19,3 +33,4 @@ exports.sayHello = functions.https.onCall((data, context) => {
     const name = data.name;
     return `Hello, ${name}`;
 })
+*/

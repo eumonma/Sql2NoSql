@@ -91,7 +91,7 @@ exports.userTest = functions.https.onRequest(userApp);
 // Insertatmos y borramos en Firestore.
 //
 ///////////////////////////////////////////////////////////
-
+/*
 exports.newUserSingup = functions.auth.user().onCreate(user => {
     return db.collection("users").doc(user.uid).set({
         email: user.email,
@@ -134,3 +134,4 @@ exports.makeUppercase = functions.firestore.document('/messages/{documentId}')
   // Setting an 'uppercase' field in Firestore document returns a Promise.
   return snap.ref.set({uppercase}, {merge: true});
 });
+*/

@@ -17,6 +17,9 @@ requestModal.addEventListener('click', (e) => {
 })
 
 
+
+/* Se quita para la aplicación final
+
 // say hello function call
 const button = document.querySelector('.call');
 button.addEventListener('click', () => {
@@ -28,3 +31,4 @@ button.addEventListener('click', () => {
     console.log(result.data);
   });
 });
+*/
