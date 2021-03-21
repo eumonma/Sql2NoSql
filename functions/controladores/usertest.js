@@ -25,8 +25,9 @@ const userApp = express();
 
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
-const { ExportBundleInfo } = require('firebase-functions/lib/providers/analytics');
-admin.initializeApp();
+//const { ExportBundleInfo } = require('firebase-functions/lib/providers/analytics');
+
+//admin.initializeApp();
 
 const db = admin.firestore();
 

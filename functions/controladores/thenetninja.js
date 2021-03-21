@@ -1,13 +1,25 @@
+
+// Inicializamos SDK Firebase Functions
 const functions = require('firebase-functions');
+
+// The Firebase Admin SDK to access Firestore.
+const admin = require('firebase-admin');
+admin.initializeApp();
 
 // auth trigger (Usuario creado)
 exports.newUserSignUp = functions.auth.user().onCreate(user => {
-    console.log('User Created', user.email, user.uid);
+    //console.log('User Created', user.email, user.uid);
+    return admin.firestore().collection('users').doc(user.uid).set({
+        email: user.email,
+        upvotedOn: []
+    });
 });
 
 // auth trigger (Usuario borrado)
 exports.userDeleted = functions.auth.user().onDelete(user => {
-    console.log('User Deleted', user.email, user.uid);
+    //console.log('User Deleted', user.email, user.uid);
+    const doc = admin.firestore().collection('users').doc(user.uid);
+    return doc.delete();
 });
 
 
